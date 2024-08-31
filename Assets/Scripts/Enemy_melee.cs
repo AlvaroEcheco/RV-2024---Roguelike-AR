@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms;
 
 public class Enemy_melee : Enemy
 {
+    [Header("Base Stats")]
     public int damage = 1;
     public float variationRadius = 5f;
 
@@ -48,39 +49,21 @@ public class Enemy_melee : Enemy
         float distance = Vector3.Distance(transform.position, player.transform.position);
         transform.LookAt(player.transform.position);
 
-        if (distance < MinRange)
-        {
-            inRange = true;
-            if (distance < MinRange - MaxApproach)
-            {
-                Approached = true;
-            }
-        }
-        else
-        {
-            inRange = false;
-            Approached = false;
-        }
+        if (distance < MinRange) inRange = true;
+        else inRange = false;
 
 
 
         if (!inRange)
         {
             Acercarce();
-            Debug.Log("acercado 1");
         }
-        else
-        {
-            if (Approached)
-            {
-                Alejarse();
-                Debug.Log("alejado");
-            }
-            else
-            {
-                Acercarce();
-                Debug.Log("acercado 2");
-            }
-        }
+    }
+
+
+    protected void Acercarce()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        rb.MovePosition(transform.position + direction * Speed * Time.deltaTime);
     }
 }

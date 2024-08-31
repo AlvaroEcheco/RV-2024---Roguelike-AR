@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Enemy_Range : Enemy
 {
+    [Header("Base Stats")]
+    public float MaxApproach = 2f;
+    public bool Approached = false;
+
     public int proyectileAmount = 5;
     public int damage = 1;
     public Vector2 variationRadius = new Vector2(5f, 15f);
@@ -30,23 +34,18 @@ public class Enemy_Range : Enemy
         if (timer >= AttackSpeed)
         {
             if (inRange)
-            {
                 for (int i = 0; i < proyectileAmount; i++)
                 {
-                    float x = Random.Range(0f, variationRadius.x);
-                    float y = Random.Range(0f, variationRadius.y);
-                    
+                    float x = Random.Range(-variationRadius.x, variationRadius.x);
+                    float y = Random.Range(-variationRadius.y, variationRadius.y);
+
                     Quaternion ro = Quaternion.Euler(transform.rotation.eulerAngles.x + x, transform.rotation.eulerAngles.y + y, transform.rotation.eulerAngles.z);
 
                     Instantiate(proyectilePrefab, FirePoint.position, ro);
                     timer = 0;
                 }
-            }
         }
-        else
-        {
-            timer += Time.deltaTime;
-        }
+        else timer += Time.deltaTime;
     }
 
     protected override void Move()
@@ -57,10 +56,7 @@ public class Enemy_Range : Enemy
         if (distance < MinRange)
         {
             inRange = true;
-            if (distance < MinRange - MaxApproach)
-            {
-                Approached = true;
-            }
+            if (distance < MinRange - MaxApproach) Approached = true;
         }
         else
         {
@@ -70,23 +66,25 @@ public class Enemy_Range : Enemy
 
 
 
-        if (!inRange)
-        {
-            Acercarce();
-            Debug.Log("acercado 1");
-        }
+        if (!inRange) Acercarce();
         else
         {
-            if (Approached)
-            {
-                Alejarse();
-            Debug.Log("alejado");
-            }
-            else
-            {
-                Acercarce();
-            Debug.Log("acercado 2");
-            }
+            if (Approached) Alejarse();
+            else Acercarce();
         }
+    }
+
+
+
+    protected void Acercarce()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        rb.MovePosition(transform.position + direction * Speed * Time.deltaTime);
+    }
+
+    protected void Alejarse()
+    {
+        Vector3 direction = (transform.position - player.transform.position).normalized;
+        rb.MovePosition(transform.position + direction * Speed * Time.deltaTime);
     }
 }
