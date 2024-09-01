@@ -36,7 +36,6 @@ public class Enemy_Slime : Enemy
         if (timer >= AttackSpeed)
         {
             Saltar();
-            Debug.Log("atacado");
 
             timer = 0;
         }
