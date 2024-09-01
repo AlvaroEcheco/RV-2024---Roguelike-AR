@@ -9,9 +9,14 @@ public class dungeonManager : MonoBehaviour
 {
     public int Nivel = 3;
     private int CantCuartos = 0;
+    public int CantEventos = 1;
     public List<Cuarto> Cuartos;
     public GameObject dungeonPoint;
-    
+    public Portal Portal;
+    public GameObject Event;
+
+    public Cuarto Cu;
+
     private Queue<GameObject> proximosCuartos = new Queue<GameObject>();
 
     public string NombreScene = "TestsGeneracionNivel";
@@ -40,6 +45,7 @@ public class dungeonManager : MonoBehaviour
     {
 
         Cuarto aux = Instantiate(Cuartos.First(x => x.Caminos.Count == 4), dungeonPoint.transform.position, Quaternion.identity);
+        aux.isBattle = false;
         UnirListas(aux.Caminos);
         CantCuartos++;
         aux.transform.parent = dungeonPoint.transform;
@@ -66,13 +72,46 @@ public class dungeonManager : MonoBehaviour
                 aux.transform.parent = dungeonPoint.transform;
             }
         }
+
+        //genera el portal en el ultimo cuarto creado
+        Instantiate(Portal, aux.Center);
+        aux.isBattle = false;
+
+        //genera los cuartos especiales
+        List<Cuarto> cuartos = dungeonPoint.transform.GetComponentsInChildren<Cuarto>()
+            .Where(x => x.Caminos.Count == 1)
+            .ToList();
+
+        cuartos.Remove(aux);
+        List<Cuarto> Elegidos = cuartos
+            .OrderBy(x => Random.value)
+            .Take(CantEventos)
+            .ToList();
+
+        int i = 0;
+        foreach (Cuarto cuarto in Elegidos)
+        {
+            cuarto.isBattle = false;
+            if (i < CantEventos)
+            {
+                Instantiate(Event, cuarto.Center);
+                i++;
+            }
+            else break;
+        }
+
+
+        //tp al player a 0 0 
+        FindAnyObjectByType<Player>().transform.position = new Vector3(0, 2, 0);
     }
+
+
+
 
     Vector3 PadrePadre(Transform t)
     {
         return t.parent.parent.parent.transform.position;
     }
-
     void UnirListas(List<GameObject> list)
     {
         foreach (GameObject item in list)
@@ -118,6 +157,18 @@ public class dungeonManager : MonoBehaviour
         {
             // no hay objetos
             return false;
+        }
+    }
+
+    public void RevisarEnemigos()
+    {
+        if (Cu != null)
+        {
+            if (Cu.Contenido.transform.childCount <= 1)
+            {
+                Cu.Completar();
+                Instantiate(Event,Cu.transform);
+            }
         }
     }
 }

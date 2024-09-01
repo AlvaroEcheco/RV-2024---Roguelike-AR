@@ -41,5 +41,17 @@ public abstract class Enemy : MonoBehaviour
         else
             inRange = false;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision != null)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Destroy(gameObject);
+                dungeonManager.instance.RevisarEnemigos();
+            }
+        }
+    }
 }
 

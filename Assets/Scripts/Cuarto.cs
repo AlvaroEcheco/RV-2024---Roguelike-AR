@@ -5,5 +5,70 @@ using UnityEngine;
 public class Cuarto : MonoBehaviour
 {
     public List<GameObject> Caminos;
-    public GameObject Puerta;
+    public List<GameObject> Puertas;
+
+    public Transform Center;
+    public Transform TopRight;
+    public Transform BotomLeft;
+    public GameObject Contenido;
+
+    public int EnemyCant = 3;
+    public List<Enemy> Enemies;
+
+    public bool isBattle = true;
+    public bool isComplete = false;
+
+    void Start()
+    {
+        EnemyCant = Mathf.Max(2, dungeonManager.instance.Nivel / 2);
+    }
+
+    void Invocar()
+    {
+        for (int i = 0; i < EnemyCant; i++)
+        {
+            int r = Random.Range(0, Enemies.Count);
+            Enemy x = Instantiate(Enemies[r], new Vector3(Random.Range(BotomLeft.position.x, TopRight.position.x), 0, Random.Range(BotomLeft.position.z,TopRight.position.z)), Quaternion.identity);
+            x.transform.parent = Contenido.transform;
+        }
+    }
+
+    public void Completar()
+    {
+        isComplete = true;
+        AbrirPuertas();
+    }
+
+    private void CerrarPuertas()
+    {
+        foreach (var item in Puertas)
+        {
+            item.SetActive(true);
+        }
+    }
+    private void AbrirPuertas()
+    {
+        foreach (var item in Puertas)
+        {
+            item.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other != null && isBattle && !isComplete)
+        {
+            if (other.CompareTag("Player"))
+            {
+                dungeonManager.instance.Cu = this;
+                CerrarPuertas();
+                Invocar();
+            }
+        }
+        //cuando entra el player
+        //invoca los enemigos?
+
+        //cerrar puertas
+        //asigna este cuarto a dungeomManager
+    }
 }
