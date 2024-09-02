@@ -14,22 +14,37 @@ public class Cuarto : MonoBehaviour
 
     public int EnemyCant = 3;
     public List<Enemy> Enemies;
+    public Boss Bosse;
 
     public bool isBattle = true;
     public bool isComplete = false;
+    public bool isActive = false;
+    public bool isBoss = false;
 
     void Start()
     {
         EnemyCant = Mathf.Max(2, dungeonManager.instance.Nivel / 2);
     }
 
-    void Invocar()
+    public void Invocar()
     {
-        for (int i = 0; i < EnemyCant; i++)
+        if (!isActive)
         {
-            int r = Random.Range(0, Enemies.Count);
-            Enemy x = Instantiate(Enemies[r], new Vector3(Random.Range(BotomLeft.position.x, TopRight.position.x), 0, Random.Range(BotomLeft.position.z,TopRight.position.z)), Quaternion.identity);
-            x.transform.parent = Contenido.transform;
+            if (isBoss)
+            {
+                Boss x = Instantiate(Bosse, Center.position, Quaternion.identity);
+                x.transform.parent = Contenido.transform;
+            }
+            else
+            {
+                for (int i = 0; i < EnemyCant; i++)
+                {
+                    int r = Random.Range(0, Enemies.Count);
+                    Enemy x = Instantiate(Enemies[r], new Vector3(Random.Range(BotomLeft.position.x, TopRight.position.x), 0, Random.Range(BotomLeft.position.z, TopRight.position.z)), Quaternion.identity);
+                    x.transform.parent = Contenido.transform;
+                }
+            }
+            isActive = true;
         }
     }
 

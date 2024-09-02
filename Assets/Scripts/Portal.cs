@@ -8,6 +8,7 @@ public class Portal : MonoBehaviour
     {
         if (other != null)
         {
+            Destroy(gameObject);
             if (other.CompareTag("Player"))
             {
                 dungeonManager.instance.NuevoNivel();

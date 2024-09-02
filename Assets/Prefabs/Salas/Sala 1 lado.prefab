@@ -60,8 +60,11 @@ MonoBehaviour:
   - {fileID: 1184189624245360119, guid: 81e2c1bb526f04942832441e0c979156, type: 3}
   - {fileID: 6068224468149533818, guid: 6f79a4cd8e22ca349b146466e62fe607, type: 3}
   - {fileID: 31865427295517297, guid: e804e4ef8d734c648bf6f1300ef01df3, type: 3}
+  Bosse: {fileID: 8205618568565096951, guid: 1db3bb0b2e2bac64e976b3fd8ef1cc87, type: 3}
   isBattle: 1
   isComplete: 0
+  isActive: 0
+  isBoss: 0
 --- !u!65 &1534825495497416218
 BoxCollider:
   m_ObjectHideFlags: 0

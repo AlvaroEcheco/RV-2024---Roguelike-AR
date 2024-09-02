@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 31865427295517297}
   m_Layer: 0
   m_Name: ememey range
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

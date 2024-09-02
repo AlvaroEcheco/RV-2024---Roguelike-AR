@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class dungeonManager : MonoBehaviour
 {
     public int Nivel = 3;
+    public float nuevoNivel = 0;
     private int CantCuartos = 0;
     public int CantEventos = 1;
     public List<Cuarto> Cuartos;
@@ -38,11 +39,18 @@ public class dungeonManager : MonoBehaviour
 
     void Start()
     {
-        Generar();
+        GenerarSalas();
     }
 
-    void Generar()
+    void GenerarSalas()
     {
+
+        if (nuevoNivel >= 1f)
+        {
+            Nivel++;
+            nuevoNivel = 0;
+        }
+        else Debug.Log("Se arreglo el bug que aumentaba 2 niveles");
 
         Cuarto aux = Instantiate(Cuartos.First(x => x.Caminos.Count == 4), dungeonPoint.transform.position, Quaternion.identity);
         aux.isBattle = false;
@@ -73,14 +81,30 @@ public class dungeonManager : MonoBehaviour
             }
         }
 
-        //genera el portal en el ultimo cuarto creado
-        Instantiate(Portal, aux.Center);
-        aux.isBattle = false;
+        GenerarEventos(aux);
+
+        //tp al player a 0 0 
+        FindAnyObjectByType<Player>().transform.position = new Vector3(0, 2, 0);
+    }
+
+    private void GenerarEventos(Cuarto aux)
+    {
+        //genera el portal o jefe en el ultimo cuarto creado
+        if (Nivel % 5 == 0)
+        {
+            aux.isBoss = true;
+        }
+        else
+        {
+            Instantiate(Portal, aux.Center);
+            aux.isBattle = false;
+        }
 
         //genera los cuartos especiales
         List<Cuarto> cuartos = dungeonPoint.transform.GetComponentsInChildren<Cuarto>()
             .Where(x => x.Caminos.Count == 1)
             .ToList();
+
 
         cuartos.Remove(aux);
         List<Cuarto> Elegidos = cuartos
@@ -99,14 +123,7 @@ public class dungeonManager : MonoBehaviour
             }
             else break;
         }
-
-
-        //tp al player a 0 0 
-        FindAnyObjectByType<Player>().transform.position = new Vector3(0, 2, 0);
     }
-
-
-
 
     Vector3 PadrePadre(Transform t)
     {
@@ -124,13 +141,13 @@ public class dungeonManager : MonoBehaviour
     {
         CantCuartos = 0;
         proximosCuartos.Clear();
-        Nivel++; 
+        nuevoNivel += 0.5f; 
         SceneManager.LoadScene(NombreScene);
         foreach (Transform child in dungeonPoint.transform)
         {
             Destroy(child.gameObject);
         }
-        Generar();
+        GenerarSalas();
 
     }
     public void Restart()
@@ -143,7 +160,7 @@ public class dungeonManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        Generar();
+        GenerarSalas();
     }
     bool BuscarArea(Vector3 position, Vector3 size)
     {
@@ -167,7 +184,8 @@ public class dungeonManager : MonoBehaviour
             if (Cu.Contenido.transform.childCount <= 1)
             {
                 Cu.Completar();
-                Instantiate(Event,Cu.transform);
+                if (Cu.isBoss) Instantiate(Portal, Cu.Center);
+                else Instantiate(Event, Cu.Center);
             }
         }
     }
