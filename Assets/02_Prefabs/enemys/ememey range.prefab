@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 31865427295517308}
   - component: {fileID: 31865427295517309}
   - component: {fileID: 31865427295517306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ememey range
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -192,6 +192,7 @@ MonoBehaviour:
   FirePoint: {fileID: 31865426684824432}
   cuarto: {fileID: 0}
   canMove: 1
+  dead: 0
   MaxApproach: 1
   Approached: 0
   proyectileAmount: 5

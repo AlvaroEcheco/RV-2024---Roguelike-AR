@@ -65,6 +65,8 @@ public abstract class Enemy : MonoBehaviour
     {
         canMove = false;
         float elapsedTime = 0f;
+        LayerMask layer = gameObject.layer;
+        
         Quaternion initialRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, 90));
 

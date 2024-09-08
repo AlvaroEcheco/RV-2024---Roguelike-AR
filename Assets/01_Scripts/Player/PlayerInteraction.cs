@@ -23,7 +23,7 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         UseWeapon();
-        if(Input.GetKeyDown(KeyCode.Q) && !Input.GetMouseButton(0))
+        if(Input.GetKeyDown(KeyCode.Q) && !Input.GetKey(KeyCode.K))
         {
             ChangeWeapon();
         }
@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void UseWeapon()
     {
-        if (Input.GetMouseButton(0) && currentWeapon != null)
+        if (Input.GetKey(KeyCode.K) && currentWeapon != null)
         {
             InterfaceWeapons weaponUse = currentWeapon.gameObject.GetComponent<InterfaceWeapons>();
 
@@ -52,16 +52,16 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else if (weaponUse.weaponType == WeaponType.Magic)
                 {
-                    animator.SetBool("CastingSpell", Input.GetMouseButton(0));
+                    animator.SetBool("CastingSpell", true);
                 }
                 else if (weaponUse.weaponType == WeaponType.Range)
                 {
-                    animator.SetBool("Shooting", Input.GetMouseButton(0));
+                    animator.SetBool("Shooting", true);
                 }
                 weaponUse.Attack();
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetKeyUp(KeyCode.K))
         {
             // Detener la animación cuando se suelta el botón para las armas mágicas
             animator.SetBool("MeleeAttack1", false);

@@ -5,52 +5,62 @@ using UnityEngine;
 public class PlayerAiming : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] private LayerMask groundMask; // Asegúrate de que este LayerMask solo incluya el suelo
-    private Camera mainCamera;
+    public float rotationSpeed = 5f;
+    public float detectionRadius = 10f; 
+    public LayerMask enemyLayer;
     public PlayerMovement playerMovement;
+
+    private Transform closestEnemy;
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = Camera.main;
         playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        FindClosestEnemy();
         if(!playerMovement.isRolling)
         {
-            Aim();
-        }
-    }
-
-    private void Aim()
-    {
-        var (success, position) = GetMousePosition();
-        if (success)
-        {
-            var direction = position - transform.position;
-            direction.y = 0;
-            transform.forward = direction;
-        }
-    }
-
-    private (bool success, Vector3 position) GetMousePosition()
-    {
-        if (mainCamera != null)
-        {
-            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            // Solo detecta colisiones con el suelo usando el groundMask
-            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+            if(closestEnemy != null)
             {
-                return (success: true, position: hitInfo.point);
+                RotateTowardsEnemy();
             }
             else
             {
-                return (success: false, position: Vector3.zero);
+                NormalRotation();
             }
         }
-        return (success: false, position: Vector3.zero);
+    }
+
+    void FindClosestEnemy()
+    {
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRadius, enemyLayer);
+
+        float closestDistance = Mathf.Infinity;
+        closestEnemy = null;
+
+        foreach (Collider enemy in enemiesInRange)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < closestDistance)
+            {
+                closestDistance = distanceToEnemy;
+                closestEnemy = enemy.transform;
+            }
+        }
+    }
+
+    void RotateTowardsEnemy()
+    {
+        Vector3 directionToEnemy = (closestEnemy.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToEnemy.x, 0, directionToEnemy.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+    }
+
+    void NormalRotation()
+    {
+        transform.localRotation = Quaternion.identity;
     }
 }

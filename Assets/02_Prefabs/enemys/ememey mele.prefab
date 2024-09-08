@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6068224468149533815}
   - component: {fileID: 6068224468149533816}
   - component: {fileID: 6068224468149533817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ememey mele
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   FirePoint: {fileID: 6068224467631136336}
   cuarto: {fileID: 0}
   canMove: 1
+  dead: 0
   damage: 1
   variationRadius: 5
   animator: {fileID: 3484475637737811637}
