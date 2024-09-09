@@ -14,6 +14,7 @@ public class Dungeon : MonoBehaviour
     public GameObject Event;
 
     public Cuarto Cu;
+    public Vector3 position;
 
     Queue<GameObject> proximosCuartos = new Queue<GameObject>();
 
@@ -22,12 +23,11 @@ public class Dungeon : MonoBehaviour
     {
         nivel = dungeonManager.instance.Nivel;
         dungeonManager.instance.dungeonPoint = this;
-        GenerarSalas();
     }
 
     public void GenerarSalas()
     {
-        Cuarto aux = Instantiate(Cuartos.First(x => x.Caminos.Count == 4), transform.position, Quaternion.identity);
+        Cuarto aux = Instantiate(Cuartos.First(x => x.Caminos.Count == 4), position, Quaternion.identity);
         aux.isBattle = false;
         UnirListas(aux.Caminos);
         CantCuartos++;
@@ -52,10 +52,6 @@ public class Dungeon : MonoBehaviour
                 aux.transform.LookAt(PadrePadre(spawnPoint.transform));// MIRAR AL SPAWNPOINT PARA ALINEAR LA PUERTA
                 aux.transform.parent = transform;
                 CantCuartos++;
-            }
-            else
-            {
-
             }
         }
 

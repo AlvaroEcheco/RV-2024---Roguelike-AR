@@ -1,0 +1,146 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|c:\\users\\diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\assets\\01_scripts\\dungeon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|solutionrelative:assets\\01_scripts\\dungeon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|c:\\users\\diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\assets\\01_scripts\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|solutionrelative:assets\\01_scripts\\dungeonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|c:\\users\\diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\assets\\01_scripts\\portal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|solutionrelative:assets\\01_scripts\\portal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|c:\\users\\diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\assets\\scripts\\placeobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\placeobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|c:\\users\\diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\assets\\01_scripts\\special_event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|solutionrelative:assets\\01_scripts\\special_event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|c:\\users\\diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\assets\\01_scripts\\cuarto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F992C4E-73E6-76C4-FA72-90722C56CCF9}|Assembly-CSharp.csproj|solutionrelative:assets\\01_scripts\\cuarto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Portal.cs",
+              "DocumentMoniker": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Portal.cs",
+              "RelativeDocumentMoniker": "Assets\\01_Scripts\\Portal.cs",
+              "ToolTip": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Portal.cs",
+              "RelativeToolTip": "Assets\\01_Scripts\\Portal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T23:59:31.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Special_Event.cs",
+              "DocumentMoniker": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Special_Event.cs",
+              "RelativeDocumentMoniker": "Assets\\01_Scripts\\Special_Event.cs",
+              "ToolTip": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Special_Event.cs",
+              "RelativeToolTip": "Assets\\01_Scripts\\Special_Event.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T23:55:55.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Cuarto.cs",
+              "DocumentMoniker": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Cuarto.cs",
+              "RelativeDocumentMoniker": "Assets\\01_Scripts\\Cuarto.cs",
+              "ToolTip": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Cuarto.cs",
+              "RelativeToolTip": "Assets\\01_Scripts\\Cuarto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T23:43:58.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dungeon.cs",
+              "DocumentMoniker": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Dungeon.cs",
+              "RelativeDocumentMoniker": "Assets\\01_Scripts\\Dungeon.cs",
+              "ToolTip": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\Dungeon.cs",
+              "RelativeToolTip": "Assets\\01_Scripts\\Dungeon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T23:36:06.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{131369f2-062d-44a2-8671-91ff31efb4f4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{2d7728c2-de0a-45b5-99aa-89b609dfde73}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dungeonManager.cs",
+              "DocumentMoniker": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\dungeonManager.cs",
+              "RelativeDocumentMoniker": "Assets\\01_Scripts\\dungeonManager.cs",
+              "ToolTip": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\01_Scripts\\dungeonManager.cs",
+              "RelativeToolTip": "Assets\\01_Scripts\\dungeonManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T23:34:55.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlaceObject.cs",
+              "DocumentMoniker": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\Scripts\\PlaceObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlaceObject.cs",
+              "ToolTip": "C:\\Users\\Diego\\source\\repos\\tareas\\realidad virtual\\juego ar\\Assets\\Scripts\\PlaceObject.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlaceObject.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T14:21:25.119Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
