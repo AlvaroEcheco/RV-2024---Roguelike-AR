@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7672459508797072796}
   - component: {fileID: 7672459508797072797}
   - component: {fileID: 7672459508797072798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossOrc
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -91,6 +91,8 @@ MonoBehaviour:
   animator: {fileID: 7672459508417338963}
   currentWeapon: {fileID: 7520666537042850895}
   AttackPoint: {fileID: 0}
+  cuarto: {fileID: 0}
+  isdead: 0
 --- !u!33 &7672459508797072867
 MeshFilter:
   m_ObjectHideFlags: 0

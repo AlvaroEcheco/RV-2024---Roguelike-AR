@@ -28,6 +28,9 @@ public class Boss : MonoBehaviour
 
     public Transform AttackPoint;
 
+    public Cuarto cuarto;
+    public bool isdead = false;
+
     void Start()
     {
         Health = MaxHealth;
@@ -112,9 +115,11 @@ public class Boss : MonoBehaviour
 
     void Invocar()
     {
-        Cuarto cuarto = transform.parent.parent.GetComponent<Cuarto>();
         cuarto.EnemyCant = EnemyCount;
+        cuarto.Enemies.Clear();
+        cuarto.Enemies.Add(EnemyPrefab);
         cuarto.Invocar();
+        cuarto.EnemyCant++;
     }
     #endregion
 
@@ -122,23 +127,27 @@ public class Boss : MonoBehaviour
     {
         Health -= amount;
 
-        if (Health <= 0)
+        if (!isdead)
         {
-            Destroy(gameObject);
-            dungeonManager.instance.RevisarEnemigos();
+            if (Health <= 0)
+            {
+                Destroy(gameObject);
+                cuarto.ContarEnemigos(1);
+                isdead = true;
+            }
+            else if (Health <= MaxHealth * 0.3)
+            {
+                Invocar();
+            }
+            //else if (Health <= MaxHealth * 0.6)
+            //{
+            //    Speed *= 1.2f;
+            //    TimeBtwAttack *= 0.8f;
+            //}
+            //else if (Health <= MaxHealth * 0.8)
+            //{
+            //    Speed *= 1.2f;
+            //}
         }
-        else if (Health <= MaxHealth * 0.3)
-        {
-            Invocar();
-        }
-        //else if (Health <= MaxHealth * 0.6)
-        //{
-        //    Speed *= 1.2f;
-        //    TimeBtwAttack *= 0.8f;
-        //}
-        //else if (Health <= MaxHealth * 0.8)
-        //{
-        //    Speed *= 1.2f;
-        //}
     }
 }

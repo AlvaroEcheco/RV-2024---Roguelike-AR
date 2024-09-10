@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 2127406215534610967}
   m_Layer: 0
   m_Name: Sala 3 lados 1
-  m_TagString: Untagged
+  m_TagString: Sala
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

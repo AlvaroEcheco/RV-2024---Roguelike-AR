@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+    public bool Activate = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null)
+        if (other != null && !Activate)
         {
-            Destroy(gameObject);
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") || other.CompareTag("PlayerBody"))
             {
                 dungeonManager.instance.NuevoNivel();
+                Activate = true;
             }
         }
     }

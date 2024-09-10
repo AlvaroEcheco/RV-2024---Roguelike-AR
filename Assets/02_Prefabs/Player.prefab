@@ -52,6 +52,7 @@ MonoBehaviour:
   health: 0
   mana: 0
   interaction: {fileID: 4467922590713533510}
+  rb: {fileID: 0}
 --- !u!114 &4725440692506414063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &5801541635341558585
 CapsuleCollider:
@@ -181,9 +182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca64c38f8a67ae645adf6da02ed4a8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundMask:
+  rotationSpeed: 100
+  detectionRadius: 10
+  enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   playerMovement: {fileID: 4725440692506414063}
 --- !u!114 &4467922590713533510
 MonoBehaviour:

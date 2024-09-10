@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public int mana;
     [Header("Referencias")]
     public PlayerInteraction interaction;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,9 @@ public class Player : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
-            SceneManager.LoadScene("TestsGeneracionNivel");
+            dungeonManager.instance.Restart();
+            Debug.Log("morido");
+            //Destroy(gameObject);
         }
     }
 }

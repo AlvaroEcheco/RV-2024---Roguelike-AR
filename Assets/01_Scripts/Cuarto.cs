@@ -35,6 +35,7 @@ public class Cuarto : MonoBehaviour
             {
                 Boss x = Instantiate(Bosse, Center.position, Quaternion.identity);
                 x.transform.parent = Contenido.transform;
+                x.cuarto = this;
             }
             else
             {
@@ -53,7 +54,8 @@ public class Cuarto : MonoBehaviour
     public void ContarEnemigos(int cant)
     {
         enemiesKilled += cant;
-        if(enemiesKilled >= EnemyCant)
+        Debug.Log(enemiesKilled + " de " + EnemyCant);
+        if (enemiesKilled >= EnemyCant)
         {
             Completar();
         }
@@ -63,6 +65,10 @@ public class Cuarto : MonoBehaviour
     {
         isComplete = true;
         AbrirPuertas();
+        if (isBoss)
+        {
+            Instantiate(dungeonManager.instance.dungeonPoint.Portal, Center);
+        }
     }
 
     private void CerrarPuertas()
@@ -86,7 +92,8 @@ public class Cuarto : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                dungeonManager.instance.Cu = this;
+
+                dungeonManager.instance.dungeonPoint.Cu = this;
                 CerrarPuertas();
                 Invocar();
             }

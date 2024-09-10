@@ -9,11 +9,32 @@ public class PlayerInteraction : MonoBehaviour
     public Transform hand;
     public GameObject objectInFloor;
     public Animator animator;
+    public NewInputSystem inputSystem;
     public int currentMana;
     [Header("Armas")]
     public GameObject currentWeapon;
     public List<GameObject> weapons;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        inputSystem = new NewInputSystem();
+
+        inputSystem.Player.Shoot.performed += ctx => UseWeapon();
+        inputSystem.Player.Shoot.canceled += ctx => StopAnimations();
+        inputSystem.Player.ChangeWeapon.started += ctx => ChangeWeapon();
+        inputSystem.Player.PickUpWeapon.started += ctx => PickUpWeapon(objectInFloor);
+    }
+
+    private void OnEnable()
+    {
+        inputSystem.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputSystem.Disable();
+    }
+
     void Start()
     {
         
@@ -22,8 +43,13 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UseWeapon();
-        if(Input.GetKeyDown(KeyCode.Q) && !Input.GetMouseButton(0))
+        if(Input.GetKey(KeyCode.K))
+        {
+            UseWeapon();
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKey(KeyCode.K))
         {
             ChangeWeapon();
         }
@@ -35,7 +61,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void UseWeapon()
     {
-        if (Input.GetMouseButton(0) && currentWeapon != null)
+        if (currentWeapon != null)
         {
             InterfaceWeapons weaponUse = currentWeapon.gameObject.GetComponent<InterfaceWeapons>();
 
@@ -52,22 +78,23 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else if (weaponUse.weaponType == WeaponType.Magic)
                 {
-                    animator.SetBool("CastingSpell", Input.GetMouseButton(0));
+                    animator.SetBool("CastingSpell", true);
                 }
                 else if (weaponUse.weaponType == WeaponType.Range)
                 {
-                    animator.SetBool("Shooting", Input.GetMouseButton(0));
+                    animator.SetBool("Shooting", true);
                 }
                 weaponUse.Attack();
             }
         }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            // Detener la animación cuando se suelta el botón para las armas mágicas
-            animator.SetBool("MeleeAttack1", false);
-            animator.SetBool("CastingSpell", false);
-            animator.SetBool("Shooting", false) ;
-        }
+        
+    }
+
+    public void StopAnimations()
+    {
+        animator.SetBool("Shooting", false);
+        animator.SetBool("MeleeAttack1", false);
+        animator.SetBool("CastingSpell", false);
     }
 
     public void ChangeWeapon()

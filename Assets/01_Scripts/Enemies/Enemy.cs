@@ -24,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
     public Cuarto cuarto;
 
     public bool canMove = true;
+    public bool dead = false;
 
     protected abstract void Move();
     protected abstract void Attack();
@@ -52,10 +53,11 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Healt -= damage;
-        if (Healt <= 0)
+        if (Healt <= 0 && !dead)
         {
             cuarto.ContarEnemigos(1);
             StartCoroutine(Die());
+            dead = true;
         }
     }
 
@@ -63,6 +65,8 @@ public abstract class Enemy : MonoBehaviour
     {
         canMove = false;
         float elapsedTime = 0f;
+        LayerMask layer = gameObject.layer;
+        
         Quaternion initialRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, 90));
 
