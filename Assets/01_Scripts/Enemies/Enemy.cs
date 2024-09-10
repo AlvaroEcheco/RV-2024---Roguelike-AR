@@ -55,6 +55,7 @@ public abstract class Enemy : MonoBehaviour
         Healt -= damage;
         if (Healt <= 0 && !dead)
         {
+            gameObject.layer = LayerMask.NameToLayer("Default");
             cuarto.ContarEnemigos(1);
             StartCoroutine(Die());
             dead = true;
@@ -65,8 +66,7 @@ public abstract class Enemy : MonoBehaviour
     {
         canMove = false;
         float elapsedTime = 0f;
-        LayerMask layer = gameObject.layer;
-        
+                
         Quaternion initialRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, 90));
 

@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         {
             dungeonManager.instance.Restart();
             Debug.Log("morido");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

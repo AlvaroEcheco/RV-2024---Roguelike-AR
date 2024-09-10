@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public Animator animator;
     public GameObject bodyRolling;
+    NewInputSystem inputSystem;
+    Vector2 dir = Vector2.zero;
 
     [Header("Estadísticas de Movimiento")]
     public float moveSpeed = 5f;
@@ -20,6 +22,24 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementInput;
     public bool isRolling = false;
     private bool canRoll = true;
+
+    private void Awake()
+    {
+        inputSystem = new NewInputSystem();
+        inputSystem.Player.Movement.performed += ctx => dir = ctx.ReadValue<Vector2>();
+        inputSystem.Player.Movement.canceled += ctx => dir = Vector2.zero;
+        inputSystem.Player.Rolling.started += ctx => AttemptRoll();
+    }
+
+    private void OnEnable()
+    {
+        inputSystem.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputSystem.Disable();
+    }
 
     private void Start()
     {
@@ -58,10 +78,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ProcessInputs()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
+        //float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        //float moveVertical = Input.GetAxisRaw("Vertical");
 
-        movementInput = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+        //movementInput = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+        movementInput = new Vector3(dir.x, 0, dir.y);
     }
 
     /// <summary>
@@ -91,6 +112,10 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void AttemptRoll()
     {
+        //if (canRoll && movementInput != Vector3.zero)
+        //{
+        //    StartCoroutine(Roll());
+        //}
         if (canRoll && movementInput != Vector3.zero)
         {
             StartCoroutine(Roll());

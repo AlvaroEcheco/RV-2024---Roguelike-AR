@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PickUpWeapon",
+                    "type": "Button",
+                    "id": "be62e1aa-9093-46f5-9d7d-d86482cf34f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -79,7 +88,7 @@
                 {
                     "name": "left",
                     "id": "f0f8cad3-6969-47d4-b70a-d8b703d7cdce",
-                    "path": "",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -222,11 +231,33 @@
                 {
                     "name": "",
                     "id": "6f920a5f-97c5-42d1-b121-bb765ad95abb",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ChangeWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f08f4cb5-77a7-4e27-911d-b7c2a90cb86e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUpWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b03f4a9b-dc8f-4fd9-96ba-0053b51b7ee0",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUpWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
