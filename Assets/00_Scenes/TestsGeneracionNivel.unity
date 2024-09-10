@@ -922,7 +922,6 @@ MonoBehaviour:
   Portal: {fileID: 1580005772797333556, guid: 787b9f0ca846b0f4c898b707d65aba56, type: 3}
   Event: {fileID: 4452759323981374867, guid: 5899bcafd9786ea42883423d7233030f, type: 3}
   Cu: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
 --- !u!1 &1508094230
 GameObject:
   m_ObjectHideFlags: 0

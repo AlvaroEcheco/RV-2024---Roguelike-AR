@@ -56,6 +56,7 @@ public abstract class Enemy : MonoBehaviour
         if (Healt <= 0 && !dead)
         {
             cuarto.ContarEnemigos(1);
+            gameObject.layer = LayerMask.NameToLayer("Default");
             StartCoroutine(Die());
             dead = true;
         }

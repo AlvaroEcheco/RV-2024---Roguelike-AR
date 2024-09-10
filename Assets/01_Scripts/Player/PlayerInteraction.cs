@@ -129,63 +129,67 @@ public class PlayerInteraction : MonoBehaviour
 
     public void PickUpWeapon(GameObject newWeapon)
     {
-        InterfaceWeapons pickedWeapon = newWeapon.GetComponent<InterfaceWeapons>();
-        if (pickedWeapon != null)
+        if (newWeapon != null)
         {
-            WeaponPickUp pick = newWeapon.GetComponent<WeaponPickUp>();
-            pick.isPickUp = true;
-            if (weapons.Count < 2)
-            {
-                // Añadir el arma a la lista si hay espacio
-                weapons.Add(newWeapon);
-                currentWeapon = newWeapon;
-            }
-            else if (weapons.Count == 2)
-            {
-                // Reemplazar el arma que está en la mano
-                GameObject weaponToDrop = currentWeapon;
-                DropWeapon(newWeapon, weaponToDrop);
+			InterfaceWeapons pickedWeapon = newWeapon.GetComponent<InterfaceWeapons>();
+			if (pickedWeapon != null)
+			{
+				WeaponPickUp pick = newWeapon.GetComponent<WeaponPickUp>();
+				pick.isPickUp = true;
+				if (weapons.Count < 2)
+				{
+					// Añadir el arma a la lista si hay espacio
+					weapons.Add(newWeapon);
+					currentWeapon = newWeapon;
+				}
+				else if (weapons.Count == 2)
+				{
+					// Reemplazar el arma que está en la mano
+					GameObject weaponToDrop = currentWeapon;
+					DropWeapon(newWeapon, weaponToDrop);
 
-                if (weapons[0] == weaponToDrop)
-                {
-                    weapons[0] = newWeapon;
-                }
-                else if (weapons[1] == weaponToDrop)
-                {
-                    weapons[1] = newWeapon;
-                }
+					if (weapons[0] == weaponToDrop)
+					{
+						weapons[0] = newWeapon;
+					}
+					else if (weapons[1] == weaponToDrop)
+					{
+						weapons[1] = newWeapon;
+					}
 
-                currentWeapon = newWeapon;
+					currentWeapon = newWeapon;
 
-                pick = weaponToDrop.GetComponent<WeaponPickUp>();
-                if (pick != null)
-                {
-                    pick.isPickUp = false;
-                }
-            }
+					pick = weaponToDrop.GetComponent<WeaponPickUp>();
+					if (pick != null)
+					{
+						pick.isPickUp = false;
+					}
+				}
 
-            // Asegurar que el nuevo arma se asigne correctamente como hijo del 'hand'
-            pickedWeapon.NotAttacking();
-            newWeapon.transform.SetParent(hand);
-            newWeapon.transform.localPosition = Vector3.zero; // Asegura que se coloque en la misma posición local que la mano
-            newWeapon.transform.localRotation = Quaternion.identity; // Asegura que se alinee con la rotación de la mano
-            newWeapon.SetActive(true); // Asegura que el arma esté activa
+				// Asegurar que el nuevo arma se asigne correctamente como hijo del 'hand'
+				pickedWeapon.NotAttacking();
+				newWeapon.transform.SetParent(hand);
+				newWeapon.transform.localPosition = Vector3.zero; // Asegura que se coloque en la misma posición local que la mano
+				newWeapon.transform.localRotation = Quaternion.identity; // Asegura que se alinee con la rotación de la mano
+				newWeapon.SetActive(true); // Asegura que el arma esté activa
 
-            // Desactiva la otra arma si es necesario
-            if (weapons.Count == 2)
-            {
-                if (weapons[0] == currentWeapon)
-                {
-                    weapons[1].SetActive(false);
-                }
-                else if (weapons[1] == currentWeapon)
-                {
-                    weapons[0].SetActive(false);
-                }
-            }
+				// Desactiva la otra arma si es necesario
+				if (weapons.Count == 2)
+				{
+					if (weapons[0] == currentWeapon)
+					{
+						weapons[1].SetActive(false);
+					}
+					else if (weapons[1] == currentWeapon)
+					{
+						weapons[0].SetActive(false);
+					}
+				}
 
-            objectInFloor = null;
-        }
+				objectInFloor = null;
+			}
+		}
+            
     }
 
     private void DropWeapon(GameObject weaponPicked, GameObject weaponDropped)

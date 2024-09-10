@@ -32,6 +32,7 @@ public class Dungeon : MonoBehaviour
         UnirListas(aux.Caminos);
         CantCuartos++;
         aux.transform.parent = transform;
+        dungeonManager.instance.GenerarEspada();
 
         Debug.Log("faltan generar " + proximosCuartos.Count);
         while (proximosCuartos.Count > 0)
@@ -64,7 +65,7 @@ public class Dungeon : MonoBehaviour
     void GenerarEventos(Cuarto aux)
     {
         //genera el portal o jefe en el ultimo cuarto creado
-        if (nivel % 5 == 0)
+        if (nivel > 0 && nivel % 5 == 0)
         {
             aux.isBoss = true;
         }
