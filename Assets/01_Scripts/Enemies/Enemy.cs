@@ -22,12 +22,18 @@ public abstract class Enemy : MonoBehaviour
     public GameObject proyectilePrefab;
     public Transform FirePoint;
     public Cuarto cuarto;
+    public Animator animator;
 
     public bool canMove = true;
     public bool dead = false;
 
     protected abstract void Move();
     protected abstract void Attack();
+
+    private void Awake()
+    {
+        Healt = MaxHealt;
+    }
 
     protected void SearchPlayer()
     {
@@ -55,12 +61,25 @@ public abstract class Enemy : MonoBehaviour
         Healt -= damage;
         if (Healt <= 0 && !dead)
         {
+<<<<<<< Updated upstream
             gameObject.layer = LayerMask.NameToLayer("Default");
             cuarto.ContarEnemigos(1);
             StartCoroutine(Die());
+=======
+            canMove = false;
+            gameObject.layer = LayerMask.NameToLayer("Default");
+>>>>>>> Stashed changes
             dead = true;
+            if(animator != null)
+            {
+                animator.SetTrigger("Death");
+            }
+            
+            Destroy(gameObject, 5f);
+            cuarto.ContarEnemigos(1);
         }
     }
+<<<<<<< Updated upstream
 
     private IEnumerator Die()
     {
@@ -81,5 +100,7 @@ public abstract class Enemy : MonoBehaviour
         canMove = false;
         Destroy(gameObject, 10f);
     }
+=======
+>>>>>>> Stashed changes
 }
 

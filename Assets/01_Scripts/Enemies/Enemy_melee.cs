@@ -8,12 +8,20 @@ public class Enemy_melee : Enemy
     [Header("Base Stats")]
     public int damage = 1;
     public float variationRadius = 5f;
-    public Animator animator;
+    public float timeBtwAttack;
+
+    [Header("Referencias")]
+    public GameObject currentWeapon;
+    private MeleeEnemy meleeEnemyWeapon;
+    private void FixedUpdate()
+    {
+        SearchPlayer();
+    }
 
     void Start()
     {
-        SearchPlayer();
         rb.freezeRotation = true;
+        meleeEnemyWeapon = currentWeapon.GetComponent<MeleeEnemy>();
     }
 
     void Update()
@@ -24,18 +32,20 @@ public class Enemy_melee : Enemy
             IsPlayerNear();
             Attack();
         }
+        
     }
 
     protected override void Attack()
     {
-        animator.SetBool("Attack", inRange);
-        if (timer >= AttackSpeed)
+        
+        if (timer >= timeBtwAttack)
         {
             if (inRange)
             {
                 Quaternion ro = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + Random.Range(-variationRadius, variationRadius), transform.rotation.eulerAngles.z);
 
-                Instantiate(proyectilePrefab, FirePoint.position, ro);
+                animator.SetTrigger("Attacking");
+                StartCoroutine(meleeEnemyWeapon.Swing(timeBtwAttack));
                 timer = 0;
             }
         }
@@ -47,6 +57,7 @@ public class Enemy_melee : Enemy
 
     protected override void Move()
     {
+        animator.SetBool("Running", !inRange);
         float distance = Vector3.Distance(transform.position, player.transform.position);
         transform.LookAt(player.transform.position);
 
@@ -54,7 +65,7 @@ public class Enemy_melee : Enemy
         else inRange = false;
 
 
-
+        
         if (!inRange)
         {
             Acercarce();
@@ -66,6 +77,5 @@ public class Enemy_melee : Enemy
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
         rb.MovePosition(transform.position + direction * Speed * Time.deltaTime);
-
     }
 }

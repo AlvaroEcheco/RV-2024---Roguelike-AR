@@ -48,6 +48,8 @@ public class PlayerAiming : MonoBehaviour
             {
                 closestDistance = distanceToEnemy;
                 closestEnemy = enemy.transform;
+
+                
             }
         }
     }

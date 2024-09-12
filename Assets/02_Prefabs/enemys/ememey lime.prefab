@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1184189624245360115}
   - component: {fileID: 1184189624245360119}
   - component: {fileID: 1184189624245360116}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: ememey lime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   proyectilePrefab: {fileID: 0}
   FirePoint: {fileID: 0}
   cuarto: {fileID: 0}
+  animator: {fileID: 0}
   canMove: 1
   dead: 0
   SpeedJump: 2

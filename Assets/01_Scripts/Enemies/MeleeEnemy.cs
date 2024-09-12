@@ -10,6 +10,11 @@ public class MeleeEnemy : MonoBehaviour
     [Header("Referencias")]
     public Collider weaponCollider;
 
+    private void Start()
+    {
+        weaponCollider.enabled = false;
+    }
+
     public IEnumerator Swing(float swingDuration)
     {
         weaponCollider.enabled = true;

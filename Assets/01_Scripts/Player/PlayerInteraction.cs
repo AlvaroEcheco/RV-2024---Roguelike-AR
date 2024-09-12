@@ -10,17 +10,19 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject objectInFloor;
     public Animator animator;
     public NewInputSystem inputSystem;
-    public int currentMana;
+    public float currentMana;
     [Header("Armas")]
     public GameObject currentWeapon;
     public List<GameObject> weapons;
-    // Start is called before the first frame update
+    private Coroutine shootingCoroutine; // Referencia a la corrutina de disparo
+
     private void Awake()
     {
         inputSystem = new NewInputSystem();
 
-        inputSystem.Player.Shoot.performed += ctx => UseWeapon();
-        inputSystem.Player.Shoot.canceled += ctx => StopAnimations();
+        // Cambiar a corrutina para disparar constantemente
+        inputSystem.Player.Shoot.performed += ctx => StartAttacking();
+        inputSystem.Player.Shoot.canceled += ctx => StopAttacking();
         inputSystem.Player.ChangeWeapon.started += ctx => ChangeWeapon();
         inputSystem.Player.PickUpWeapon.started += ctx => PickUpWeapon(objectInFloor);
     }
@@ -35,34 +37,43 @@ public class PlayerInteraction : MonoBehaviour
         inputSystem.Disable();
     }
 
-    void Start()
+    public void StartAttacking()
     {
-        
+        // Iniciar corrutina de disparo continuo
+        if (shootingCoroutine == null)
+        {
+            shootingCoroutine = StartCoroutine(ShootContinuously());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopAttacking()
     {
-        if(Input.GetKey(KeyCode.K))
+        // Detener corrutina de disparo
+        if (shootingCoroutine != null)
         {
-            UseWeapon();
+            StopCoroutine(shootingCoroutine);
+            shootingCoroutine = null;
         }
 
+        // Detener animaciones cuando se suelta el botón
+        StopAnimations();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKey(KeyCode.K))
+    private IEnumerator ShootContinuously()
+    {
+        while (true)
         {
-            ChangeWeapon();
-        }
-        if(Input.GetKeyDown(KeyCode.F) && objectInFloor != null)
-        {
-            PickUpWeapon(objectInFloor);
+            UseWeapon();  // Ejecutar el ataque
+            yield return new WaitForSeconds(0.1f);  // Intervalo entre disparos, ajustar según sea necesario
         }
     }
 
     public void UseWeapon()
     {
+        
         if (currentWeapon != null)
         {
+            Debug.Log("Atacando");
             InterfaceWeapons weaponUse = currentWeapon.gameObject.GetComponent<InterfaceWeapons>();
 
             if (weaponUse != null)

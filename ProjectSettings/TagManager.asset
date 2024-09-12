@@ -4,12 +4,23 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< Updated upstream
   - Enemy
   - PlayerBody
   - Wall
   - Boss
   - Sala
   - DungeonPoint
+=======
+  - DungeonPoint
+  - Sala
+  - Wall
+  - PlayerBody
+  - Enemy
+  - Boss
+  - HealthBar
+  - ManaBar
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -17,8 +28,13 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< Updated upstream
   - ColliderLayer
   - EnemyLayer
+=======
+  - EnemyLayer
+  - 
+>>>>>>> Stashed changes
   - 
   - 
   - 

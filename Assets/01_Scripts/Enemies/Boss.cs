@@ -26,8 +26,6 @@ public class Boss : MonoBehaviour
     public GameObject currentWeapon;
     private MeleeEnemy meleeEnemyWeapon;
 
-    public Transform AttackPoint;
-
     public Cuarto cuarto;
     public bool isdead = false;
 
@@ -56,6 +54,8 @@ public class Boss : MonoBehaviour
         }
     }
 
+
+
     void SearchPlayer()
     {
         GameObject aux = GameObject.FindGameObjectWithTag("Player");
@@ -75,11 +75,15 @@ public class Boss : MonoBehaviour
 
     void Move()
     {
+        bool isMoving = rb.velocity.magnitude > 0; 
+        animator.SetBool("Running", isMoving);
+        float veloci = rb.velocity.magnitude;
+        Debug.Log(veloci);
         if (inRange == false)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
             rb.MovePosition(transform.position + direction * Speed * Time.deltaTime);
-            animator.SetBool("Walking", true);
+            
         }
     }
 
@@ -105,12 +109,12 @@ public class Boss : MonoBehaviour
 
     void Barrido()
     {
-        animator.SetTrigger("Barrido");
+        animator.SetTrigger("Cross");
     }
 
     void Arriba()
     {
-        animator.SetTrigger("Arriba");
+        animator.SetTrigger("Upper");
     }
 
     void Invocar()
@@ -123,31 +127,29 @@ public class Boss : MonoBehaviour
     }
     #endregion
 
+    private bool hasInvoqued = false;
     public void TakeDamage(float amount)
     {
         Health -= amount;
 
         if (!isdead)
         {
+            
+            
+            if (Health <= MaxHealth * 0.3 && !hasInvoqued)
+            {
+                animator.SetTrigger("Scream");
+                Invocar();
+                hasInvoqued = true;
+            }
             if (Health <= 0)
             {
-                Destroy(gameObject);
-                cuarto.ContarEnemigos(1);
                 isdead = true;
+                animator.SetTrigger("Death");
+                Destroy(gameObject, 10);
+                cuarto.ContarEnemigos(1);
+                
             }
-            else if (Health <= MaxHealth * 0.3)
-            {
-                Invocar();
-            }
-            //else if (Health <= MaxHealth * 0.6)
-            //{
-            //    Speed *= 1.2f;
-            //    TimeBtwAttack *= 0.8f;
-            //}
-            //else if (Health <= MaxHealth * 0.8)
-            //{
-            //    Speed *= 1.2f;
-            //}
         }
     }
 }
