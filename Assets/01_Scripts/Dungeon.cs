@@ -9,6 +9,8 @@ public class Dungeon : MonoBehaviour
     public int CantCuartos = 0;
     public int CantEventos = 1;
 
+    bool generado = false;
+
     public List<Cuarto> Cuartos;
     public Portal Portal;
     public GameObject Event;
@@ -27,6 +29,11 @@ public class Dungeon : MonoBehaviour
 
     public void GenerarSalas()
     {
+        if (generado)
+            return;
+
+        generado = true;
+
         Cuarto aux = Instantiate(Cuartos.First(x => x.Caminos.Count == 4), transform.position, Quaternion.identity);
         aux.isBattle = false;
         UnirListas(aux.Caminos);
@@ -38,7 +45,7 @@ public class Dungeon : MonoBehaviour
         while (proximosCuartos.Count > 0)
         {
             GameObject spawnPoint = proximosCuartos.Dequeue();
-            if (!BuscarArea(spawnPoint.transform.position, 4))
+            if (!BuscarArea(spawnPoint.transform.position, 1))
             {
                 Vector3 p = new Vector3(spawnPoint.transform.position.x, 0, spawnPoint.transform.position.z);
                 if (CantCuartos <= nivel)
@@ -61,6 +68,7 @@ public class Dungeon : MonoBehaviour
         }
 
         GenerarEventos(aux);
+        dungeonManager.instance.GenerarPlayer();
     }
     void GenerarEventos(Cuarto aux)
     {
@@ -71,6 +79,7 @@ public class Dungeon : MonoBehaviour
         }
         else
         {
+            Debug.Log("portal generado en " + aux.transform.position + " con " + CantCuartos + " cuartos");
             Instantiate(Portal, aux.Center);
             aux.isBattle = false;
         }

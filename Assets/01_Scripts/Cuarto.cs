@@ -42,7 +42,7 @@ public class Cuarto : MonoBehaviour
                 for (int i = 0; i < EnemyCant; i++)
                 {
                     int r = Random.Range(0, Enemies.Count);
-                    Enemy x = Instantiate(Enemies[r], new Vector3(Random.Range(BotomLeft.position.x, TopRight.position.x), 0, Random.Range(BotomLeft.position.z, TopRight.position.z)), Quaternion.identity);
+                    Enemy x = Instantiate(Enemies[r], new Vector3(Random.Range(BotomLeft.position.x, TopRight.position.x), Center.position.y, Random.Range(BotomLeft.position.z, TopRight.position.z)), Quaternion.identity);
                     x.transform.parent = Contenido.transform;
                     x.cuarto = this;
                 }

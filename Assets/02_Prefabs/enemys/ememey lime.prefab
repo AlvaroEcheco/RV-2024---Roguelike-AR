@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184189624245360114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9156, y: 0.1412, z: 1.8808}
-  m_LocalScale: {x: 0.7584, y: 0.68244, z: 0.7374}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.152, y: 0.136, z: 0.146}
   m_Children:
   - {fileID: 1184189624528961624}
   - {fileID: 1184189624377899181}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealt: 10
   Healt: 0
-  Speed: 5
+  Speed: 1
   AttackSpeed: 3
   MinRange: 0
   inRange: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   cuarto: {fileID: 0}
   canMove: 1
   dead: 0
-  SpeedJump: 2
+  SpeedJump: 1
   damage: 1
 --- !u!54 &1184189624245360116
 Rigidbody:

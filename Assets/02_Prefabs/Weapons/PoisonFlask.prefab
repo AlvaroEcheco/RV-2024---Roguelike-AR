@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 155323485534876514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.94, y: 1.6, z: -5.98}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,10 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1069989d886cb438b2e0348d5d4cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwingObjectPrefab: {fileID: 1030348358555726849, guid: 0806c987e14aa4b4b829f69f910a90c5, type: 3}
+  throwingObjectPrefab: {fileID: 1030348358555726849, guid: 0806c987e14aa4b4b829f69f910a90c5,
+    type: 3}
   damage: 0
   throwForce: 50
   timeBtwThrow: 1
+  _weaponType: 2
+  _manaCost: 1
 --- !u!114 &155323485534876518
 MonoBehaviour:
   m_ObjectHideFlags: 0
