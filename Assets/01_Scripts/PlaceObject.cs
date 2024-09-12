@@ -11,10 +11,13 @@ public class PlaceObject : MonoBehaviour
     ARPlaneManager planeManager;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
+    public Canvas canvas;
+
     private void Awake()
     {
         raycastManager = GetComponent<ARRaycastManager>();
         planeManager = GetComponent<ARPlaneManager>();
+        canvas.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -33,24 +36,35 @@ public class PlaceObject : MonoBehaviour
 
     private void FingerDown(EnhancedTouch.Finger finger)
     {
-        //// Permitir el primer toque (índice 0)
-        //if (finger.index != 0) return;
+        // Permitir el primer toque (índice 0)
+        if (finger.index != 0) return;
 
-        //// Realizar un raycast en la posición del toque
-        //if (raycastManager.Raycast(finger.currentTouch.screenPosition, hits, TrackableType.PlaneWithinPolygon))
-        //{
-        //    foreach (var hit in hits)
-        //    {
-        //        Pose pose = hit.pose;
-        //        Dungeon dungeon = FindObjectOfType<Dungeon>();
+        // Realizar un raycast en la posición del toque
+        if (raycastManager.Raycast(finger.currentTouch.screenPosition, hits, TrackableType.PlaneWithinPolygon))
+        {
+            foreach (var hit in hits)
+            {
+                Pose pose = hit.pose;
 
-        //        dungeon.transform.position = pose.position;
-        //        dungeon.GenerarSalas();
-        //        dungeonManager.instance.GenerarPlayer();
+                // Desactivar el plane manager para dejar de detectar planos
+                planeManager.enabled = false;
+                foreach (var plane in planeManager.trackables)
+                {
+                    plane.gameObject.SetActive(false); // Ocultar los planos detectados
+                }
 
-        //        gameObject.SetActive(false);
-        //        return;
-        //    }
-        //}
+                dungeonManager.instance.dungeonPoint.transform.position = pose.position;
+                dungeonManager.instance.player.transform.position += pose.position;
+
+                dungeonManager.instance.dungeonPoint.gameObject.SetActive(true);
+                dungeonManager.instance.player.gameObject.SetActive(true);
+                FindObjectOfType<Sword>().gameObject.SetActive(true);
+
+                canvas.gameObject.SetActive(true);
+                enabled = false;
+
+                return;
+            }
+        }
     }
 }

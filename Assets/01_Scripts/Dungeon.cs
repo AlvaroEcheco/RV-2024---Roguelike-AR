@@ -22,9 +22,17 @@ public class Dungeon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        IniciarNivel();
+    }
+
+    public void IniciarNivel()
+    {
         nivel = dungeonManager.instance.Nivel;
         dungeonManager.instance.dungeonPoint = this;
         GenerarSalas();
+        dungeonManager.instance.player.gameObject.SetActive(false);
+        FindObjectOfType<Sword>().gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void GenerarSalas()

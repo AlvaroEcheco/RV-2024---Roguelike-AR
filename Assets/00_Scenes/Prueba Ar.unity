@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1013,7 +1013,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1533521079}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1022,7 +1022,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!224 &1609078262
 RectTransform:
@@ -1132,11 +1132,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031720646}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 218c0685301e5ab47af49b572ddec9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1609078261}
 --- !u!114 &2031720648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1061ea9e6962ec744b62746945fb167d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nivel: 0
+  Nivel: 1
   escena: Prueba Ar
   dungeonPoint: {fileID: 0}
   playerPrefab: {fileID: 2548500017648432910, guid: 2f3b5ed2f244c904399a63cdf337133c,
