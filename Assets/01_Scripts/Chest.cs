@@ -13,7 +13,9 @@ public class Chest : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                Instantiate(drops[Random.Range(0,drops.Count)], transform.position, Quaternion.identity);
+                int random = Random.Range(0, drops.Count);
+                GameObject obj = Instantiate(drops[random], transform.position, Quaternion.identity);
+                obj.transform.localScale = drops[random].transform.localScale;
                 Destroy(gameObject);
             }
         }

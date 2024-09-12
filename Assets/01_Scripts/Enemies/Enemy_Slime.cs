@@ -20,7 +20,7 @@ public class Enemy_Slime : Enemy
     {
         if (player != null && canMove)
         {
-            transform.LookAt(player.transform.position);
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             Attack();
         }
     }

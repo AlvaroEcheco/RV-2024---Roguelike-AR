@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06c4c502ff007844b820921a8826cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealt: 10
+  MaxHealt: 8
   Healt: 0
   Speed: 1.2
   AttackSpeed: 2
@@ -156,7 +156,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.23
-  m_Height: 0.99
+  m_Height: 1.45
   m_Direction: 1
   m_Center: {x: 0, y: 0.24, z: 0}
 --- !u!54 &6068224468149533817

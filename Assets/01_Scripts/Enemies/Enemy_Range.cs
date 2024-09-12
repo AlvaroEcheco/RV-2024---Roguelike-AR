@@ -51,7 +51,7 @@ public class Enemy_Range : Enemy
     protected override void Move()
     {
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        transform.LookAt(player.transform.position);
+        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
 
         if (distance < MinRange)
         {
